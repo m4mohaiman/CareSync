@@ -22,7 +22,6 @@ interface CustomProps {
   fieldType: FormFieldType;
   name: string;
   label?: string;
-  
   placeholder?: string;
   iconSrc?: string;
   iconAlt?: string;
@@ -48,7 +47,6 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
               className="ml-2"
             />
           )}
-
           <FormControl>
             <Input
               className="shad-input border-0"
@@ -83,13 +81,12 @@ const CustomFormField = (props: CustomProps) => {
   return (
     <FormField
       control={control}
-      name="username"
+      name={name}
       render={({ field }) => (
         <FormItem className="flex-1">
           {fieldType !== FormFieldType.CHECKBOX && label && (
             <FormLabel>{label}</FormLabel>
           )}
-
           <RenderInput field={field} props={props} />
           <FormMessage className="shad-error" />
         </FormItem>
