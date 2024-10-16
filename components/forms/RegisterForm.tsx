@@ -39,18 +39,14 @@ const RegisterForm = ({ user }: { user: User }) => {
     },
   });
 
-  async function onSubmit({
-    name,
-    email,
-    phone,
-  }: z.infer<typeof UserFormValidation>) {
+  const onSubmit = async (values: z.infer<typeof UserFormValidation>) => {
     setIsLoading(true);
 
     try {
       const user = {
-        name: name,
-        email: email,
-        phone: phone,
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
       };
 
       const newUser = await createUser(user);
@@ -63,7 +59,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     }
 
     setIsLoading(false);
-  }
+  };
 
   return (
     <Form {...form}>
@@ -129,22 +125,22 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="gender"
             label="Gender"
-            renderSkeleton={({ field }) => (
+            renderSkeleton={(field) => (
               <FormControl>
                 <RadioGroup
-                    className="flex h-11 gap-6 xl:justify-between"
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    {GenderOptions.map((option, i) => (
-                      <div key={option + i} className="radio-group">
-                        <RadioGroupItem value={option} id={option} />
-                        <Label htmlFor={option} className="cursor-pointer">
-                          {option}
-                        </Label>
-                      </div>
-                    ))}
-                  </RadioGroup>
+                  className="flex h-11 gap-6 xl:justify-between"
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  {GenderOptions.map((option, i) => (
+                    <div key={option + i} className="radio-group">
+                      <RadioGroupItem value={option} id={option} />
+                      <Label htmlFor={option} className="cursor-pointer">
+                        {option}
+                      </Label>
+                    </div>
+                  ))}
+                </RadioGroup>
               </FormControl>
             )}
           />

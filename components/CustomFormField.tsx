@@ -104,8 +104,8 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           />
         </FormControl>
       );
-    case FormFieldType.SKELETON:
-      return renderSkeleton ? renderSkeleton(field) : null;
+      case FormFieldType.SKELETON:
+        return props.renderSkeleton ? props.renderSkeleton(field) : null;
     default:
       break;
   }
