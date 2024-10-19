@@ -11,9 +11,8 @@ import { UserFormValidation } from "@/lib/validation";
 import { createUser } from "@/lib/actions/patient.action";
 import { useRouter } from "next/navigation";
 import { FormFieldType } from "./PatientForm";
-import { RadioGroup } from "../ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { GenderOptions } from "@/constants";
-import { RadioGroupItem } from "@radix-ui/react-radio-group";
 import { Label } from "../ui/label";
 
 // export enum FormFieldType {
@@ -118,6 +117,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="birthDate"
             label="Date of Birth"
+            dateFormat="dd/MM/yyyy"
           />
 
           <CustomFormField
@@ -143,6 +143,74 @@ const RegisterForm = ({ user }: { user: User }) => {
                 </RadioGroup>
               </FormControl>
             )}
+          />
+        </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="address"
+            label="Address"
+            placeholder="Dhanmondi 27, Dhaka"
+          />
+
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="occupation"
+            label="Occupation"
+            placeholder="Teacher"
+          />
+        </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="emergencyContactName"
+            label="Guardian Name"
+            placeholder="Jhon Doe"
+          
+          />
+
+          <CustomFormField
+            fieldType={FormFieldType.PHONE_INPUT}
+            control={form.control}
+            name="emergencyContactNumber"
+            label="Emergency Contact Number"
+            placeholder="(+880) 123 456 7890"
+            iconSrc="/assets/icons/phone.svg"
+            iconAlt="phone"
+          />
+        </div>
+
+
+        <section className="space-y-6">
+          <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Medical Information</h2>
+          </div>
+        </section>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            fieldType={FormFieldType.SELECT}
+            control={form.control}
+            name="primaryPhysician"
+            label="Primary Physician"
+            placeholder="Select Physician"
+            
+          
+          />
+
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="insuranceProvider"
+            label="Insurance Provider"
+            placeholder="(+880) 123 456 7890"
+            iconSrc="/assets/icons/phone.svg"
+            iconAlt="phone"
           />
         </div>
 
